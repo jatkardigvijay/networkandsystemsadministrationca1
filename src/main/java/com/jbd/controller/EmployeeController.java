@@ -2,6 +2,8 @@ package com.jbd.controller;
 
 import java.util.List;
 
+import javax.validation.constraints.Min;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,8 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/api/v1/{id}")
-	public ResponseEntity<Response> getEmployeeById(@PathVariable("id") int id) throws JbdException {
+	public ResponseEntity<Response> getEmployeeById(
+			@Min(value = 1, message = "minimum value should be 1") @PathVariable("id") int id) throws JbdException {
 
 		Employee employee = employeeService.getEmployeeById(id);
 
