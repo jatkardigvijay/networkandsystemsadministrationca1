@@ -30,4 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.getAllEmployees();
 	}
 
+	@Override
+	public Employee getEmployeeById(int id) throws JbdException {
+		
+		logger.info("executing getEmployeeById() from employee service implementation with id : "+id);
+		return employeeDao.getEmployeeById(id);
+	}
+	
+	
+
 }

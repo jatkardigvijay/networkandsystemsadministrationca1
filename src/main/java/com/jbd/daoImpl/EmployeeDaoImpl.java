@@ -58,4 +58,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeList;
 	}
 
+	@Override
+	public Employee getEmployeeById(int id) throws JbdException {
+
+		Employee employee = null;
+
+		PreparedStatement ps = null;
+
+		try (Connection connection = dataSource.getConnection()) {
+
+			ps = connection.prepareStatement(Queries.GET_EMPLOYEE_BY_ID);
+
+			logger.info("Executing query : " + Queries.GET_EMPLOYEE_BY_ID);
+			
+			ps.setObject(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				employee = new Employee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JbdException("Error executing query" + Queries.GET_EMPLOYEE_BY_ID,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return employee;
+	}
+
 }

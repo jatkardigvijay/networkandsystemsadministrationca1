@@ -9,4 +9,6 @@ public interface EmployeeService {
 
 	List<Employee> getAllEmployees() throws JbdException;
 
+	Employee getEmployeeById(int id) throws JbdException;
+
 }

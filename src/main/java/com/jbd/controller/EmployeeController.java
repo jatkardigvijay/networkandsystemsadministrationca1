@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +43,22 @@ public class EmployeeController {
 
 			logger.info("received employee list with size : " + employeeList.size());
 			return new ResponseEntity<Response>(new Response("success", employeeList, null), HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("/api/v1/{id}")
+	public ResponseEntity<Response> getEmployeeById(@PathVariable("id") int id) throws JbdException {
+
+		Employee employee = employeeService.getEmployeeById(id);
+
+		if (employee == null) {
+
+			logger.info("No data found or list is empty");
+			throw new JbdException("No data found", HttpStatus.OK, employee);
+		} else {
+
+			logger.info("received employee with id : " + employee.getId());
+			return new ResponseEntity<Response>(new Response("success", employee, null), HttpStatus.OK);
 		}
 	}
 }
