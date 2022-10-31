@@ -13,4 +13,6 @@ public interface EmployeeService {
 
 	boolean deleteById(Integer id) throws JbdException;
 
+	boolean insertEmployee(Employee employee) throws JbdException;
+
 }

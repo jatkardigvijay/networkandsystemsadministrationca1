@@ -44,4 +44,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.deleteById(id);
 	}
 
+	@Override
+	public boolean insertEmployee(Employee employee) throws JbdException {
+
+		logger.info("executing insertEmployee() from employee service implementation");
+		return employeeDao.insertEmployee(employee);
+	}
+
 }

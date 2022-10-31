@@ -119,4 +119,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	}
 
+	@Override
+	public boolean insertEmployee(Employee employee) throws JbdException {
+
+		PreparedStatement ps = null;
+
+		try (Connection connection = dataSource.getConnection()) {
+
+			ps = connection.prepareStatement(Queries.INSERT_EMPLOYEE);
+
+			logger.info("executing query : " + Queries.INSERT_EMPLOYEE);
+
+			ps.setInt(1, employee.getId());
+			ps.setString(2, employee.getFirstName());
+			ps.setString(3, employee.getLastName());
+
+			int rs = ps.executeUpdate();
+
+			if (rs == 1) {
+
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JbdException("Error executing query " + Queries.INSERT_EMPLOYEE,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return true;
+	}
+
 }
