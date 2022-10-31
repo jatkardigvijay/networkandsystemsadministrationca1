@@ -70,7 +70,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps = connection.prepareStatement(Queries.GET_EMPLOYEE_BY_ID);
 
 			logger.info("Executing query : " + Queries.GET_EMPLOYEE_BY_ID);
-			
+
 			ps.setObject(1, id);
 
 			ResultSet rs = ps.executeQuery();
@@ -87,6 +87,36 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 
 		return employee;
+	}
+
+	@Override
+	public boolean deleteById(Integer id) throws JbdException {
+
+		PreparedStatement ps = null;
+
+		try (Connection connection = dataSource.getConnection()) {
+
+			ps = connection.prepareStatement(Queries.DELETE_EMPLOYEE_BY_ID);
+
+			logger.info("executing query : " + Queries.DELETE_EMPLOYEE_BY_ID);
+
+			ps.setObject(1, id);
+
+			boolean rs = ps.execute();
+
+			if (rs == true) {
+
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JbdException("Error executing query" + Queries.DELETE_EMPLOYEE_BY_ID,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return true;
+
 	}
 
 }

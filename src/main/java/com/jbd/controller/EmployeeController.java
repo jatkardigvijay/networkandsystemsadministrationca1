@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,4 +65,24 @@ public class EmployeeController {
 			return new ResponseEntity<Response>(new Response("success", employee, null), HttpStatus.OK);
 		}
 	}
+
+	@DeleteMapping("api/v1/{id}")
+	public ResponseEntity<Integer> deleteById(
+			@Min(value = 1, message = "minimum value should be 1") @PathVariable("id") Integer id) throws JbdException {
+
+		boolean isRemoved = employeeService.deleteById(id);
+
+		if (!isRemoved) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<Integer>(id, HttpStatus.OK);
+
+	}
+	
+//	@PostMapping("/api/v1/add")
+//	public boolean insertEmployee(@RequestBody Employee employee) {
+//
+//		return employeeService.insertEmployee(employee);
+//	}
 }

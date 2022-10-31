@@ -32,11 +32,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee getEmployeeById(int id) throws JbdException {
-		
-		logger.info("executing getEmployeeById() from employee service implementation with id : "+id);
+
+		logger.info("executing getEmployeeById() from employee service implementation with id : " + id);
 		return employeeDao.getEmployeeById(id);
 	}
-	
-	
+
+	@Override
+	public boolean deleteById(Integer id) throws JbdException {
+
+		logger.info("executing deleteById() from employee service implementation with id : " + id);
+		return employeeDao.deleteById(id);
+	}
 
 }
