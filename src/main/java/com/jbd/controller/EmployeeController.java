@@ -3,6 +3,7 @@ package com.jbd.controller;
 import java.util.List;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -81,11 +83,32 @@ public class EmployeeController {
 		return new ResponseEntity<Integer>(id, HttpStatus.OK);
 
 	}
-	
+
 	@PostMapping("/api/v1/add")
 	public boolean insertEmployee(@RequestBody Employee employee) throws JbdException {
 
 		logger.info("executing insertEmployee() method from employee controller");
 		return employeeService.insertEmployee(employee);
+	}
+
+	@PutMapping("/api/v1/update/{id}")
+	public ResponseEntity<Response> updateEmployee( @RequestBody Employee employee, @PathVariable("id") Integer id)
+			throws JbdException {
+		validationCheck(id);
+		employee.setId(id);
+		Employee updatedEmployee = employeeService.updatedEmployee(employee);
+
+		return new ResponseEntity<Response>(new Response("Record updated successfully", updatedEmployee, null),
+				HttpStatus.OK);
+
+	}
+	
+	public int validationCheck(int id) throws JbdException {
+		
+		if (id >= 1) {
+			return id;
+		} else {
+			throw new JbdException("Id should be equal to 1 or greater than 1",HttpStatus.BAD_REQUEST);
+		}
 	}
 }

@@ -150,4 +150,37 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return true;
 	}
 
+	@Override
+	public Employee updatedEmployee(Employee employee) throws JbdException {
+
+		PreparedStatement ps = null;
+
+		try (Connection connection = dataSource.getConnection()) {
+			
+			ps = connection.prepareStatement(Queries.UPDATE_EMPLOYEE);
+
+			if (employee != null) {
+
+				int employeeId = employee.getId();
+
+				ps.setString(1, employee.getFirstName());
+				ps.setString(2, employee.getLastName());
+				ps.setInt(3, employeeId);
+			}
+
+			int rs = ps.executeUpdate();
+
+			if (rs == 1) {
+
+				System.out.println("Record successfully updated");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JbdException("Error executign query : " + Queries.UPDATE_EMPLOYEE,
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return employee;
+	}
+
 }

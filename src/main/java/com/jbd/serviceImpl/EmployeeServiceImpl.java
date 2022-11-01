@@ -51,4 +51,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.insertEmployee(employee);
 	}
 
+	@Override
+	public Employee updatedEmployee(Employee employee) throws JbdException {
+
+		logger.info("executing updatedEmployee() from employee service implementation");
+		Employee updatedEmployee = employeeDao.updatedEmployee(employee);
+		return updatedEmployee;
+	}
+
 }

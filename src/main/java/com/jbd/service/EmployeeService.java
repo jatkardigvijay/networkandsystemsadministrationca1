@@ -15,4 +15,6 @@ public interface EmployeeService {
 
 	boolean insertEmployee(Employee employee) throws JbdException;
 
+	Employee updatedEmployee(Employee employee) throws JbdException;
+
 }
