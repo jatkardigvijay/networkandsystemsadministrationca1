@@ -44,7 +44,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			while (rs.next()) {
 
-				Employee employee = new Employee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"));
+				Employee employee = new Employee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"),
+						rs.getString("email"));
 
 				employeeList.add(employee);
 			}
@@ -71,18 +72,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			logger.info("Executing query : " + Queries.GET_EMPLOYEE_BY_ID);
 
-			ps.setObject(1, id);
+			ps.setInt(1, id);
 
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
 
-				employee = new Employee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"));
+				employee = new Employee(rs.getInt("id"), rs.getString("firstName"), rs.getString("lastName"),
+						rs.getString("email"));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new JbdException("Error executing query" + Queries.GET_EMPLOYEE_BY_ID,
+			throw new JbdException("Error executing query : " + Queries.GET_EMPLOYEE_BY_ID,
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -120,7 +122,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public boolean insertEmployee(Employee employee) throws JbdException {
+	public Employee insertEmployee(Employee employee) throws JbdException {
 
 		PreparedStatement ps = null;
 
@@ -130,15 +132,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 			logger.info("executing query : " + Queries.INSERT_EMPLOYEE);
 
-			ps.setInt(1, employee.getId());
-			ps.setString(2, employee.getFirstName());
-			ps.setString(3, employee.getLastName());
+			ps.setString(1, employee.getFirstName());
+			ps.setString(2, employee.getLastName());
+			ps.setString(3, employee.getEmail());
 
 			int rs = ps.executeUpdate();
 
 			if (rs == 1) {
 
-				return true;
+				return employee;
 			}
 
 		} catch (Exception e) {
@@ -147,7 +149,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return true;
+		return employee;
 	}
 
 	@Override
@@ -156,7 +158,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		PreparedStatement ps = null;
 
 		try (Connection connection = dataSource.getConnection()) {
-			
+
 			ps = connection.prepareStatement(Queries.UPDATE_EMPLOYEE);
 
 			if (employee != null) {
@@ -165,7 +167,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 				ps.setString(1, employee.getFirstName());
 				ps.setString(2, employee.getLastName());
-				ps.setInt(3, employeeId);
+				ps.setString(3, employee.getEmail());
+				ps.setInt(4, employee.getId());
 			}
 
 			int rs = ps.executeUpdate();

@@ -3,7 +3,6 @@ package com.jbd.controller;
 import java.util.List;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +84,7 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/api/v1/add")
-	public boolean insertEmployee(@RequestBody Employee employee) throws JbdException {
+	public Employee insertEmployee(@RequestBody Employee employee) throws JbdException {
 
 		logger.info("executing insertEmployee() method from employee controller");
 		return employeeService.insertEmployee(employee);

@@ -45,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean insertEmployee(Employee employee) throws JbdException {
+	public Employee insertEmployee(Employee employee) throws JbdException {
 
 		logger.info("executing insertEmployee() from employee service implementation");
 		return employeeDao.insertEmployee(employee);

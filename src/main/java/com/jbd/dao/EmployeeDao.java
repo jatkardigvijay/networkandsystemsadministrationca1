@@ -13,7 +13,7 @@ public interface EmployeeDao {
 
 	boolean deleteById(Integer id) throws JbdException;
 
-	boolean insertEmployee(Employee employee) throws JbdException;
+	Employee insertEmployee(Employee employee) throws JbdException;
 
 	Employee updatedEmployee(Employee employee) throws JbdException;
 

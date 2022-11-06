@@ -1,7 +1,5 @@
 package com.jbd.entity;
 
-import javax.validation.constraints.Min;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +15,6 @@ public class Employee {
 	int id;
 	String firstName;
 	String lastName;
+	String email;
 	
 }
