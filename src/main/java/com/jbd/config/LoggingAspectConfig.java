@@ -10,11 +10,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/*******************************************************************************************************************************************************
+ *   
+ * Created By: @author Digvijay.Jatkar 
+ * Description: This classes is created to use AOP for Logging purposes 
+ * Created Date: 27/10/2022
+ * History:
+ * Version	 Modified Date 		By 							Description 
+ * 1.0 	     27/10/2022 	Digvijay Jatkar    			This classes is created to use AOP for Logging purposes  
+ * ***************************************************************************************************************************************************
+ */
 @Component
 @Aspect
 public class LoggingAspectConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoggingAspectConfig.class);
+	
+	
+	
 
 	@Pointcut("execution(* com.jbd.controller..*.*(..))")
 	public void insideController() {

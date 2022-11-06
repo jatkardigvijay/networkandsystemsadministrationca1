@@ -27,6 +27,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Autowired
 	private DataSource dataSource;
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method gets the list all the Employees by connecting with the database
+	 * @param 
+	 * @return List of all Employees
+	 * @throws JbdException
+	 * @Created 29/10/2022
+	 * @Updated
+	 **/
 	@Override
 	public List<Employee> getAllEmployees() throws JbdException {
 
@@ -59,6 +68,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeList;
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method gets the Employee by the Employee ID
+	 * @param employeeId
+	 * @return Returns an employee based on the employeeId
+	 * @throws JbdException
+	 * @Created 30/10/2022
+	 * @Updated
+	 **/
 	@Override
 	public Employee getEmployeeById(int id) throws JbdException {
 
@@ -91,6 +109,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employee;
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method deletes the Employee by the Employee ID
+	 * @param employeeId
+	 * @return Returns true if an employee is deleted
+	 * @throws JbdException
+	 * @Created 30/10/2022
+	 * @Updated
+	 **/
 	@Override
 	public boolean deleteById(Integer id) throws JbdException {
 
@@ -121,6 +148,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method inserts an Employee into the database
+	 * @param Employee
+	 * @return Returns Employee
+	 * @throws JbdException
+	 * @Created 01/11/2022
+	 * @Updated
+	 **/
 	@Override
 	public Employee insertEmployee(Employee employee) throws JbdException {
 
@@ -152,6 +188,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employee;
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method updates an Employee into the database
+	 * @param Employee
+	 * @return Returns Employee
+	 * @throws JbdException
+	 * @Created 01/11/2022
+	 * @Updated
+	 **/
 	@Override
 	public Employee updatedEmployee(Employee employee) throws JbdException {
 

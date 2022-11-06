@@ -5,6 +5,16 @@ import org.springframework.http.HttpStatus;
 import lombok.Getter;
 import lombok.Setter;
 
+/*******************************************************************************************************************************************************
+ *   
+ * Created By: @author Digvijay.Jatkar 
+ * Description: This class is used to handle Global exception
+ * Created Date: 27/10/2022
+ * History:
+ * Version	 Modified Date 		By 							Description 
+ * 1.0 	     27/10/2022 	Digvijay Jatkar    			This class is used to handle Global exception  
+ * ***************************************************************************************************************************************************
+ */
 @Getter
 @Setter
 public class JbdException extends Exception {

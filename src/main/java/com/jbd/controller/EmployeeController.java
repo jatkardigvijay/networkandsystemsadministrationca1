@@ -36,6 +36,15 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method gets the list all the Employees
+	 * @param 
+	 * @return List of all Employees
+	 * @throws JbdException
+	 * @Created 29/10/2022
+	 * @Updated
+	 **/
 	@GetMapping("/api/v1")
 	public ResponseEntity<Response> getAllEmployees() throws JbdException {
 
@@ -52,6 +61,15 @@ public class EmployeeController {
 		}
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method gets the Employee by the Employee ID
+	 * @param empoyeeId
+	 * @return Gets the employee by Employee id
+	 * @throws JbdException
+	 * @Created 29/10/2022
+	 * @Updated
+	 **/
 	@GetMapping("/api/v1/{id}")
 	public ResponseEntity<Response> getEmployeeById(
 			@Min(value = 1, message = "minimum value should be 1") @PathVariable("id") int id) throws JbdException {
@@ -69,6 +87,15 @@ public class EmployeeController {
 		}
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method deletes the employee By passing the employee ID
+	 * @param employeeId
+	 * @return 
+	 * @throws JbdException
+	 * @Created 31/10/2022
+	 * @Updated
+	 **/
 	@DeleteMapping("api/v1/{id}")
 	public ResponseEntity<Integer> deleteById(
 			@Min(value = 1, message = "minimum value should be 1") @PathVariable("id") Integer id) throws JbdException {
@@ -83,6 +110,15 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This inserts an Employee
+	 * @param Employee as a body
+	 * @return Employee
+	 * @throws JbdException
+	 * @Created 01/11/2022
+	 * @Updated
+	 **/
 	@PostMapping("/api/v1/add")
 	public Employee insertEmployee(@RequestBody Employee employee) throws JbdException {
 
@@ -90,6 +126,15 @@ public class EmployeeController {
 		return employeeService.insertEmployee(employee);
 	}
 
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This updates an Employee info based on the employeeId
+	 * @param Employee as a body, Id
+	 * @return updated Employee
+	 * @throws JbdException
+	 * @Created 01/11/2022
+	 * @Updated
+	 **/
 	@PutMapping("/api/v1/update/{id}")
 	public ResponseEntity<Response> updateEmployee( @RequestBody Employee employee, @PathVariable("id") Integer id)
 			throws JbdException {
@@ -102,6 +147,15 @@ public class EmployeeController {
 
 	}
 	
+	/**
+	 * @author Digvijay.Jatkar
+	 * @Description This method is for the validation of an employee
+	 * @param Id
+	 * @return updated Employee
+	 * @throws JbdException
+	 * @Created 01/11/2022
+	 * @Updated
+	 **/
 	public int validationCheck(int id) throws JbdException {
 		
 		if (id >= 1) {
