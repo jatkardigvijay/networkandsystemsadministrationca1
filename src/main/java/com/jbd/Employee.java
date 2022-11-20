@@ -1,4 +1,4 @@
-package com.jbd.entity;
+package com.jbd;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
