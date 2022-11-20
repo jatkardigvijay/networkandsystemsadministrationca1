@@ -35,6 +35,12 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@GetMapping("/message")
+	public String deploymentMessage() {
+		
+		return "deployment to AWS remaining";
+	}
 
 	/**
 	 * @author Digvijay.Jatkar
