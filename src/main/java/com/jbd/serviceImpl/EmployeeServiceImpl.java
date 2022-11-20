@@ -1,5 +1,6 @@
 package com.jbd.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -27,7 +28,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getAllEmployees() throws JbdException {
 
 		logger.info("executing getAllEmployees() from employee service implementation");
-		return employeeDao.getAllEmployees();
+		List<Employee> employeeList = new ArrayList<Employee>();
+		employeeList.add(new Employee(1, "abc", "pqr", "abcpqr@gmail.com"));
+		
+		return employeeList;
 	}
 
 	@Override
