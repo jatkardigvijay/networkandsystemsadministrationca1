@@ -12,10 +12,10 @@ public class EmployeeDao {
 
     public List<Employee> getEmployees() {
         return Stream.of(
-                new Employee(1, "Digvijay", "Rana", "ranadigvijay@gmail.com"),
-                new Employee(2, "Ramesh", "Lala", "@gmail.com"),
-                new Employee(3, "Daniel", "Abraham", "abrahamdaniel@gmail.com"),
-                new Employee(4, "Sankalp", "Joshi", "joshisankalp@hotmail.com"))
+                new Employee(1, "Digvijay", "Jatkar", "ranadigvijay@gmail.com"),
+                new Employee(2, "Ramesh", "Joshi", "joshiramesh@gmail.com"),
+                new Employee(3, "Devi", "Prasad", "prasaddevi@gmail.com"),
+                new Employee(4, "Martand", "Damdhere", "martanddamdhere@hotmail.com"))
                 .collect(Collectors.toList());
     }
 }
