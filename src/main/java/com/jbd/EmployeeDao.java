@@ -12,12 +12,7 @@ public class EmployeeDao {
 
     public List<Employee> getEmployees() {
         return Stream.of(
-                new Employee(1, "Digvijay", "Jatkar", "ranadigvijay@gmail.com"),
-                new Employee(2, "Ramesh", "Joshi", "joshiramesh@gmail.com"),
-                new Employee(3, "Devi", "Prasad", "prasaddevi@gmail.com"),
-                new Employee(4, "Martand", "Damdhere", "martanddamdhere@hotmail.com"),
-        		new Employee(5, "David", "Paul", "pauldavid@hotmail.com"),
-				new Employee(6, "Ram", "Deshmukh", "deshmukhram@hotmail.com"))
+                new Employee(1, "Digvijay", "Jatkar", "ranadigvijay@gmail.com"))
 
                 .collect(Collectors.toList());
     }
