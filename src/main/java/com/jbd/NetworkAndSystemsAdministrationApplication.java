@@ -18,7 +18,7 @@ public class NetworkAndSystemsAdministrationApplication {
 	@GetMapping("/home")
 	public String getMessage() {
 
-		return "Welcome to the Continuous assesment 1 demo";
+		return "Welcome to CI/CD using AWS code pipeline - NSA continuous pipeline 1";
 	}
 
 	@GetMapping("/api/v1")
